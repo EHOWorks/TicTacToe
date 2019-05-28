@@ -17,15 +17,21 @@ namespace TicTacToe
     {
         bool turn = true; // true = X turn ; false = O turn
         int turn_count = 0;
+        static String player1, player2;
 
         public Form1()
         {
             InitializeComponent();
         }
-
+        public static void setPlayerNames(String n1, String n2)
+        {
+            player1 = n1;
+            player2 = n2;
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            label1.Text = player1 + " Gagne";
+            label2.Text = player2 + " Gagne";
         }
 
         private void MetroButton1_Click(object sender, EventArgs e)
@@ -47,7 +53,7 @@ namespace TicTacToe
         {
             Button b = (Button)sender;
             if (turn)
-                b.Text = "X";
+                b.Text = "X"; 
             else
                 b.Text = "O";
 
@@ -91,12 +97,20 @@ namespace TicTacToe
 
                 String winner = "";
                 if (turn)
-                    winner = "O";
+                {
+                    o_win_count.Text = (Int32.Parse(o_win_count.Text) + 1).ToString();
+                    winner = player2;
+                }
                 else
-                    winner = "X";
+                {
+                    x_win_count.Text = (Int32.Parse(x_win_count.Text) + 1).ToString();
+                    winner = player1;
+                }
+                   
                 MessageBox.Show(winner + " Gagne ! :) " , " Victory ");
             }else if (turn_count == 9)
             {
+                draw_count.Text = (Int32.Parse(draw_count.Text) + 1).ToString();
                 MessageBox.Show("Egalite ! :( " , " Draw " );
             }
                
@@ -108,8 +122,12 @@ namespace TicTacToe
             {
                 foreach (Control c in Controls)
                 {
-                    Button b = (Button)c;
-                    b.Enabled = false;
+                    if (c is Button && c.Text.Equals(""))
+                    {
+                        Button b = (Button) c;
+                        b.Enabled = false;
+                    }
+                    
                 }
             }
             catch{ }
@@ -121,9 +139,12 @@ namespace TicTacToe
             {
                 foreach (Control c in Controls)
                 {
-                    Button b = (Button)c;
-                    b.Enabled = true;
-                    b.Text = "";
+                    if (c is Button  && ( c.Text.Equals("") || c.Text.Equals("X") || c.Text.Equals("O")) )
+                    {
+                        Button b = (Button)c;
+                        b.Enabled = true;
+                        b.Text = "";
+                    }              
                 }
             }
             catch { }
@@ -139,6 +160,55 @@ namespace TicTacToe
         }
 
         private void FileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_enter(object sender, EventArgs e)
+        {
+            Button b = (Button)sender;
+            if (b.Enabled)
+            {
+                if (turn)
+                    b.Text = "X";
+                else
+                    b.Text = "O";
+            }
+     
+        }
+
+        private void button_leave(object sender, EventArgs e)
+        {
+            Button b = (Button)sender;
+            if (b.Enabled)
+                b.Text = "";
+        }
+
+        private void MetroLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MetroTile1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            turn = true;
+            turn_count = 0;
+            enableButtons();
+        }
+
+        private void MenuPrincipalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form f2 = new Menu();
+            f2.Show();
+            this.Hide();        
+        }
+
+        private void Label2_Click(object sender, EventArgs e)
         {
 
         }

@@ -11,3 +11,4 @@ D:\Visual Studio\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.CoreCompileInput
 D:\Visual Studio\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.CopyComplete
 D:\Visual Studio\TicTacToe\TicTacToe\obj\Debug\TicTacToe.exe
 D:\Visual Studio\TicTacToe\TicTacToe\obj\Debug\TicTacToe.pdb
+D:\Visual Studio\TicTacToe\TicTacToe\obj\Debug\TicTacToe.Menu.resources
